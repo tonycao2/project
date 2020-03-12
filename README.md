@@ -8,6 +8,10 @@ Version: 1.0.0
 Date: 2020-03-12
 
 ## Installation
+Setup ansible for linux and windows as usual.
+Create "test" user on linux and windows box.
+
+
 Copy these files to ansible control node.
 ```powershell
 ansible-playbook-linux.yaml
