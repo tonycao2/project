@@ -24,7 +24,7 @@
       systemd: daemon_reload=yes
 
     - name: start testservice/enable service when system is up
-      become_method: su
+      become: yes
       become_user: test
       systemd:
         name: testservice
