@@ -12,4 +12,4 @@ User=test
 ExecStart=/usr/local/test.sh
 
 [Install]
-WantedBy=default.target
+WantedBy=multi-user.target
