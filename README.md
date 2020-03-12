@@ -32,6 +32,7 @@ run PS2EXE-GUI to convert test.ps1 to test.exe
 Copy these files to cifs location for windows servers.
 ```powershell
 test.exe
+test-retry.exe  #if you want see failure with 3 retries.
 ```
 
 ## Deploy by Ansible
