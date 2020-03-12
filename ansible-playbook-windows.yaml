@@ -1,0 +1,29 @@
+---
+- hosts: windows
+  
+- name: Copy file with owner and permissions
+  win_copy:
+    src: \\share\test.exe
+    dest: D:\local\test.exe
+    
+- name: Add test account to Log on as a service
+  win_user_right:
+    name: SeServiceLogonRight
+    users:
+    - .\test
+    action: add
+
+- name: Install the test service
+  win_nssm:
+    name: export_hostname_date_service
+    application: D:\local\test.exe
+    become: yes
+    become_user: Administrator
+
+- name: Configure and start the test service using win_service
+  win_service:
+    name: export_hostname_date_service
+    username: test
+    password: password
+    start_mode: auto
+    state: started
