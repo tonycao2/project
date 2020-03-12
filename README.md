@@ -26,7 +26,7 @@ testservice.service
 ```
 Convert Power shell script to binary
 ```powershell
-run PS2EXE-GUI to convert test.ps1 to test.exe
+Use PS2EXE-GUI attached to convert test.ps1 into test.exe
 ```
 
 Copy these files to cifs location for windows servers.
