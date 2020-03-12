@@ -24,6 +24,9 @@
   win_service:
     name: export_hostname_date_service
     username: test
-    password: password
+    password: !vault |
+$ANSIBLE_VAULT;1.1;AES256
+66386439653236332384305834092834023842093840580081363934653561363964363833
+3136626431626523498598369840654096540584902309802420460a626438346336353332
     start_mode: auto
     state: started
