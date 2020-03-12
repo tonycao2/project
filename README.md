@@ -34,7 +34,7 @@ Copy these files to cifs location for windows servers.
 test.exe
 ```
 
-## Usage
+## Deploy by Ansible
 For Linux
 ```powershell
 ansible-playbook -i inventory.ini ansible-playbook-linux.yaml
