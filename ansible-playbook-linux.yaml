@@ -2,32 +2,39 @@
 - hosts: linux
   # become root (using sudo, by default)
   become: yes
-
-  
-- name: Copy file with owner and permissions
-  copy:
-    src: /nfs/test.sh
-    dest: /usr/local/test.sh
-    owner: test
-    group: test
-    mode: '0744'
+  tasks:
+    - name: Copy file with owner and permissions
+      copy:
+        src: /nfs/test.sh
+        dest: /usr/local/test.sh
+        owner: test
+        group: test
+        mode: '0744'
  
- 
- - name: Copy file with owner and permissions
-  copy:
-    src: /nfs/testservice.service
-    dest: /etc/systemd/testservice.service
-    owner: root
-    group: root
-    mode: '0755'
+    - name: Copy file with owner and permissions
+      copy:
+        src: /nfs/testservice.service
+        dest: /etc/systemd/testservice.service
+        owner: root
+        group: root
+        mode: '0755'
 
 
-- name: just force systemd to reread configs 
-  systemd: daemon_reload=yes
+    - name: just force systemd to reread configs 
+      systemd: daemon_reload=yes
 
-- name: start testservice/enable service when system is up
-  systemd:
-    name: testservice
-    state: started
-    enabled: yes
+    - name: get my user id
+      become: true
+      become_user: test
+      command: id -u
+      register: myuid
+
+    - name: start testservice/enable service when system is up
+      become: true
+      become_user: test
+      systemd:
+        name: testservice
+        scope: user
+        state: started
+        enabled: yes
     
