@@ -23,18 +23,11 @@
     - name: just force systemd to reread configs 
       systemd: daemon_reload=yes
 
-    - name: get my user id
-      become: true
-      become_user: test
-      command: id -u
-      register: myuid
-
     - name: start testservice/enable service when system is up
-      become: true
+      become_method: su
       become_user: test
       systemd:
         name: testservice
-        scope: user
         state: started
         enabled: yes
     
