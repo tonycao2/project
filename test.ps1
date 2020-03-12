@@ -5,7 +5,7 @@ $Stoploop = $false
 do {
 try {
 hostname > .\output
-date1 >> .\output
+date >> .\output
 #Write-Host "Job completed"
 $Stoploop = $true
 }
