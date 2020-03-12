@@ -41,5 +41,5 @@ ansible-playbook -i inventory.ini ansible-playbook-linux.yaml
 ```
 For Windows
 ```powershell
-ansible-playbook -i inventory.ini ansible-playbook-windows.yaml
+ansible-playbook -i inventory.ini --ask-vault-pass ansible-playbook-windows.yaml
 ```
