@@ -1,32 +1,32 @@
 ---
 - hosts: windows
-  
-- name: Copy file with owner and permissions
-  win_copy:
-    src: \\share\test.exe
-    dest: D:\local\test.exe
+  tasks:
+    - name: Copy file with owner and permissions
+      win_copy:
+        src: \\share\test.exe
+        dest: D:\local\test.exe
     
-- name: Add test account to Log on as a service
-  win_user_right:
-    name: SeServiceLogonRight
-    users:
-    - .\test
-    action: add
+    - name: Add test account to Log on as a service
+      win_user_right:
+        name: SeServiceLogonRight
+        users:
+        - .\test
+        action: add
 
-- name: Install the test service
-  win_nssm:
-    name: export_hostname_date_service
-    application: D:\local\test.exe
-    become: yes
-    become_user: Administrator
+    - name: Install the test service
+      win_nssm:
+        name: export_hostname_date_service
+        application: D:\local\test.exe
+        become: yes
+        become_user: Administrator
 
-- name: Configure and start the test service using win_service
-  win_service:
-    name: export_hostname_date_service
-    username: test
-    password: !vault |
-$ANSIBLE_VAULT;1.1;AES256
-66386439653236332384305834092834023842093840580081363934653561363964363833
-3136626431626523498598369840654096540584902309802420460a626438346336353332
-    start_mode: auto
-    state: started
+    - name: Configure and start the test service using win_service
+      win_service:
+        name: export_hostname_date_service
+        username: test
+        password: !vault |
+    $ANSIBLE_VAULT;1.1;AES256
+    66386439653236332384305834092834023842093840580081363934653561363964363833
+    3136626431626523498598369840654096540584902309802420460a626438346336353332
+        start_mode: auto
+        state: started
