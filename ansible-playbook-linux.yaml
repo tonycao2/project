@@ -2,6 +2,7 @@
 - hosts: linux
   # become root (using sudo, by default)
   become: yes
+  gather_facts: no
   tasks:
     - name: Copy file with owner and permissions
       copy:
